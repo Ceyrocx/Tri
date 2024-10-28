@@ -2,8 +2,14 @@ from random import *
 from math import *
 from visualisationTri import *
 
-amount = 6
-L = [randint(0,100) for i in range(amount)]
+amount = 9
+L = []
+while True:
+	i = randint(0, amount-1)
+	if i not in L:
+		L.append(i)
+	if len(L) == amount:
+		break
 
 def bogo(L):
 	y = 0

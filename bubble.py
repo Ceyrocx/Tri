@@ -1,8 +1,16 @@
 from random import *
 from math import *
+from visualisationTri import *
 
-z = 6000
-x = [randint(-20000,20000) for i in range(z)]
+amount = 101
+L = []
+while True:
+	i = randint(0, 100)
+	if i not in L:
+		L.append(i)
+	if len(L) == amount:
+		break
+
 
 def verif(x):
 	L = bubble(x)
@@ -12,6 +20,7 @@ def verif(x):
 	return True
 		
 def bubble(L):
+	verif = False
 	for j in range(len(L), 0, -1):
 		max = L[0]
 		ind = 0
@@ -21,7 +30,10 @@ def bubble(L):
 				max = L[i]
 				ind = i
 		L[ind], L[j-1] = L[j-1], L[ind]
+		if j == 1:
+			verif = True
+		visualisation(L, verif, legende="Bubble")
 		
 	return L	
 
-print(verif(x))		
+print(verif(L))		
