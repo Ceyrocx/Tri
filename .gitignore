@@ -1,0 +1,31 @@
+# Ignorer les fichiers temporaires
+*.tmp
+*.temp
+
+# Ignorer les fichiers de sauvegarde
+*~
+*.bak
+
+# Ignorer les fichiers générés par l'IDE ou l'éditeur de texte
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignorer les fichiers de compilateur
+*.class
+*.o
+*.out
+
+# Ignorer les dossiers de dépendances
+node_modules/
+venv/
+__pycache__/
+
+# Ignorer les fichiers système
+.DS_Store
+Thumbs.db
+
+# Ignorer les fichiers de configuration personnels
+*.env
+*.local
