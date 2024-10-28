@@ -1,15 +1,6 @@
-from random import *
-from math import *
-from visualisationTri import *
-
-amount = 9
-L = []
-while True:
-	i = randint(0, amount-1)
-	if i not in L:
-		L.append(i)
-	if len(L) == amount:
-		break
+from random import shuffle
+from math import ceil, factorial
+from visualisationTri import visualisation
 
 def bogo(L):
 	y = 0
@@ -25,12 +16,10 @@ def bogo(L):
 				passage = False
 				break
 
-		visualisation(L, passage, legende="Bogo", nbTest=y)
+		visualisation(L, passage, titre="Bogo", nbTest=y)
 
-		if passage:
-				return L, y
-
-bogo(L)
+		# if passage:
+		# 		return L, y
 
 def moyenne(x, z, seuil):
 	i = 0
