@@ -34,7 +34,3 @@ def bogo(L, time):
         # Optionally return the sorted list and the number of attempts
         # if passage:
         #     return L, y
-
-
-			
-		
