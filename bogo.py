@@ -1,5 +1,4 @@
 from random import shuffle
-from math import ceil, factorial
 from visualisationTri import visualisation
 
 def bogo(L, time):
@@ -37,36 +36,5 @@ def bogo(L, time):
         #     return L, y
 
 
-def moyenne(x, z, seuil):
-    """
-    Computes the average number of shuffles required by the Bogo sort algorithm
-    over a specified number of trials and checks if the average is equal to the
-    factorial of a given number.
-
-    Parameters:
-    x (list): The list of elements to be sorted.
-    z (int): The number to calculate the factorial for comparison.
-    seuil (int): The number of trials to run.
-
-    Returns:
-    tuple: A tuple containing the average number of shuffles (rounded up),
-           the average number of shuffles (as a float),
-           and a boolean indicating whether the average equals the factorial of z.
-    """
-    i = 0  # Counter for the number of trials
-    y = 0  # Sum of shuffles required over trials
-
-    while i < seuil:
-        # Execute Bogo sort and accumulate the number of attempts
-        y += bogo(x)[1]  # Add the number of attempts from each trial
-        i += 1  # Increment trial counter
-        if i % 100 == 0:  # Print progress every 100 trials
-            print(i)
-
-    moyenne = y // seuil  # Calculate the average number of shuffles (integer division)
-    # Return a tuple with the rounded average, the float average, and a comparison with factorial
-    return ceil(moyenne), y / seuil, ceil(moyenne) == factorial(z)
-
-# print(moyenne(x, z, 10000))  # Uncomment to run the average computation
 			
 		
