@@ -41,7 +41,7 @@ Ce projet peut être utilisé en ligne de commande avec des arguments permettant
 
 ### Commande de base
 
-python run.py -n <nombre d'éléments> -t <algorithme> -s <vitesse>
+python run.py -n nombre d'éléments -t algorithme -s vitesse
 
 ### Exemples
 
