@@ -1,5 +1,3 @@
 matplotlib
 numpy
-math
-argparse
-random
+
