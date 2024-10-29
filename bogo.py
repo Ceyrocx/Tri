@@ -30,7 +30,7 @@ def bogo(L, time):
                 break  # Exit the loop early if unsorted
 
         # Visualize the current state of the list after shuffling
-        visualisation(L, bars, passage, titre="Bogo", time=time, nbTest=y)
+        visualisation(L, bars, passage, titre="Bogo Sort", time=time, nbTest=y)
 
         # Optionally return the sorted list and the number of attempts
         # if passage:

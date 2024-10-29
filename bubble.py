@@ -20,11 +20,10 @@ def bubble(L, time):
         for i in range(1, j):
             # Compare the current element with the previous one
             if L[i] < L[i-1]:
-                print(L)  # Print the current state of the list
                 # Swap elements if they are in the wrong order
                 L[i], L[i-1] = L[i-1], L[i]  # Swap the largest element to the end
             # Visualize the current state of the list after each comparison
-            visualisation(L, bars, verif=False, titre="Bubble sort", time=time)
+            visualisation(L, bars, verif=False, titre="Bubble Sort", time=time)
 
     # Final visualization when sorting is complete
     visualisation(L, bars, verif=True, titre="Bubble sort", time=time)
