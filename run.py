@@ -1,8 +1,8 @@
 import argparse
 from random import randint
 
-from bogo import bogo
-from bubble import bubble
+from Sort.bogo import bogo
+from Sort.bubble import bubble
 
 # Dictionnaire associant les noms d'algorithmes à leurs fonctions
 dictTri = {

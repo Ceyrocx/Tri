@@ -19,7 +19,7 @@ def bogo(L, time):
     while True:
         passage = True  # Flag to check if the list is sorted
         y += 1  # Increment the shuffle count
-        print("test", y)  # Print the current shuffle attempt number
+        # print("test", y)  # Print the current shuffle attempt number
         shuffle(L)  # Shuffle the list randomly
 
         # Check if the list is sorted
@@ -32,5 +32,6 @@ def bogo(L, time):
         visualisation(L, bars, passage, titre="Bogo Sort", time=time, nbTest=y)
 
         # Optionally return the sorted list and the number of attempts
-        # if passage:
+        if passage:
+            break
         #     return L, y

@@ -35,6 +35,8 @@ def visualisation(L, bars, verif, time=0.01, titre=None, nbTest=None):
 
     # Display the test number if provided
     if nbTest is not None:
+        for txt in plt.gca().texts:
+            txt.remove()
         plt.text(0.98, 1.02, f"Test n°{nbTest}", ha="right", fontsize=10, transform=plt.gca().transAxes)
 
     # Update bar heights for each call
