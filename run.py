@@ -3,11 +3,13 @@ from random import randint
 
 from Sort.bogo import bogo
 from Sort.bubble import bubble
+from Sort.frequency import frequency
 
 # Dictionnaire associant les noms d'algorithmes à leurs fonctions
 dictTri = {
     "bogo": bogo,    # Algorithme de tri Bogo
     "bubble": bubble,  # Algorithme de tri à bulles
+    "frequency" : frequency,
 }
 
 def run(amount, tri, time):

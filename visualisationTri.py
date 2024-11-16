@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-def visualisation(L, bars, verif, time=0.01, titre=None, nbTest=None):
+def visualisation(L, verif, time=0.01, titre=None, nbTest=None):
     """
     Visualizes the state of a list L as a bar chart, updating the heights of the bars
     based on the values in the list. The visualization is updated at each call.
@@ -22,14 +22,15 @@ def visualisation(L, bars, verif, time=0.01, titre=None, nbTest=None):
 
     # Check if this is the first call to initialize the plot
     if not hasattr(visualisation, "initialized"):
+        visualisation.bars = []
         plt.figure()  # Create a new figure for plotting
 
         # Set up the title and text on the first call
         plt.title(titre, color="orange", loc="center", fontweight="bold")
 
         # Initialize the bars on the first call
-        bars.clear()  # Clear any existing bars
-        bars.extend(plt.bar(x, L, color="orange"))  # Create the initial bar plot
+        visualisation.bars.clear()  # Clear any existing bars
+        visualisation.bars.extend(plt.bar(x, L, color="orange"))  # Create the initial bar plot
         plt.draw()  # Draw the initial figure
         visualisation.initialized = True  # Set flag to indicate initialization complete
 
@@ -40,7 +41,7 @@ def visualisation(L, bars, verif, time=0.01, titre=None, nbTest=None):
         plt.text(0.98, 1.02, f"Test n°{nbTest}", ha="right", fontsize=10, transform=plt.gca().transAxes)
 
     # Update bar heights for each call
-    for bar, height in zip(bars, L):
+    for bar, height in zip(visualisation.bars, L):
         bar.set_height(height)  # Update each bar's height with the current value
 
     plt.pause(time)  # Allow the plot to update with the new heights

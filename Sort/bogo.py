@@ -13,12 +13,11 @@ def bogo(L, time):
     Returns:
     None: This function does not return a value; it visualizes the sorting process.
     """
-    y = 0  # Counter for the number of shuffles
-    bars = []  # Initialize an empty list to store bar heights for visualization
+    counter = 0  # Counter for the number of shuffles
 
     while True:
         passage = True  # Flag to check if the list is sorted
-        y += 1  # Increment the shuffle count
+        counter += 1  # Increment the shuffle count
         # print("test", y)  # Print the current shuffle attempt number
         shuffle(L)  # Shuffle the list randomly
 
@@ -29,7 +28,7 @@ def bogo(L, time):
                 break  # Exit the loop early if unsorted
 
         # Visualize the current state of the list after shuffling
-        visualisation(L, bars, passage, titre="Bogo Sort", time=time, nbTest=y)
+        visualisation(L, passage, titre="Bogo Sort", time=time, nbTest=counter)
 
         # Optionally return the sorted list and the number of attempts
         if passage:
