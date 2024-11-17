@@ -4,12 +4,14 @@ from random import shuffle
 from Sort.bogo import bogo
 from Sort.bubble import bubble
 from Sort.frequency import frequency
+from Sort.quick import quick
 
 # Dictionnaire associant les noms d'algorithmes à leurs fonctions
 dictTri = {
     "bogo": bogo,    # Algorithme de tri Bogo
     "bubble": bubble,  # Algorithme de tri à bulles
     "frequency": frequency,
+    "quick": quick
 }
 
 def run(amount, tri, time):
