@@ -1,5 +1,5 @@
 import argparse
-from random import randint
+from random import shuffle
 
 from Sort.bogo import bogo
 from Sort.bubble import bubble
@@ -9,7 +9,7 @@ from Sort.frequency import frequency
 dictTri = {
     "bogo": bogo,    # Algorithme de tri Bogo
     "bubble": bubble,  # Algorithme de tri à bulles
-    "frequency" : frequency,
+    "frequency": frequency,
 }
 
 def run(amount, tri, time):
@@ -24,11 +24,8 @@ def run(amount, tri, time):
     Returns:
     None: This function does not return a value; it calls the sorting function.
     """
-    L = []  # Initialize an empty list to hold the unique integers
-    while len(L) < amount:  # Continue until the list has the specified amount of elements
-        i = randint(1, amount)  # Generate a random integer between 1 and 'amount'
-        if i not in L:  # Check if the integer is already in the list
-            L.append(i)  # If not, add it to the list
+    L = [i for i in range(1, amount)]
+    shuffle(L)
 
     # Call the appropriate sorting function from the dictionary using the specified algorithm
     dictTri[tri.lower()](L, time)
