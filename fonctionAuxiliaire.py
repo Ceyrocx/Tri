@@ -99,3 +99,41 @@ def moyenne(x, z, seuil):
 
 # print(moyenne(x, z, 10000))  # Uncomment to run the average computation
 
+
+def fusion(Lpetit, Lgrand, time):
+    result = []
+
+    if len(Lpetit) > 0:
+        for val in Lpetit:
+            result.append(val)
+
+    if len(Lgrand) > 0:
+        for val in Lgrand:
+            result.append(val)
+
+    visualisation(result, verif=False, titre="Quick Sort", time=time)
+    print(result)
+    return result
+
+def quick(LTri, a, b, time):
+    if b - a < 1:
+        return LTri
+
+
+    pivot = LTri[b-a-1]
+    Lpetit = []
+    Lgrand = []
+
+    for element in LTri:
+        if element < pivot:
+            Lpetit.append(element)
+        elif element > pivot:
+            Lgrand.append(element)
+
+    Lpetit.append(pivot)
+
+    posPivot = len(Lpetit)-1
+    b = posPivot + len(Lgrand)
+
+    visualisation(LTri, verif=False, titre="Quick Sort", time=time)
+    return fusion(quick(Lpetit, a, posPivot, time), quick(Lgrand, posPivot+1, b, time), time)
