@@ -26,7 +26,7 @@ def run(amount, tri, time):
     Returns:
     None: This function does not return a value; it calls the sorting function.
     """
-    L = [i for i in range(1, amount)]
+    L = [i for i in range(1, amount+1)]
     shuffle(L)
 
     # Call the appropriate sorting function from the dictionary using the specified algorithm
