@@ -43,6 +43,8 @@ def visualisation(L, verif, time=0.01, titre=None, nbTest=None):
     # Update bar heights for each call
     for bar, height in zip(visualisation.bars, L):
         bar.set_height(height)  # Update each bar's height with the current value
+        if verif:
+            bar.set_color("red")
 
     plt.pause(time)  # Allow the plot to update with the new heights
 
