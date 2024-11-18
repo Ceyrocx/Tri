@@ -1,5 +1,13 @@
 from visualisationTri import visualisation
 
+def repartition(L, Lrempl, deb, fin, time):
+    y = 0
+    for i in range(deb, fin):
+        visualisation(L, verif=False, titre="Quick Sort", time=time) # Visualiser l'état actuel de la liste après partition
+        L[i] = Lrempl[y]
+        y += 1
+    return L
+
 def quick(L, time, a=None, b=None):
     """
     Implémente l'algorithme de tri rapide (Quick Sort) avec visualisation à chaque étape.
@@ -38,14 +46,17 @@ def quick(L, time, a=None, b=None):
             Lgrand.append(L[i])
 
     # Reconstruire la liste en plaçant les éléments plus petits, le pivot, et les plus grands
-    L[a:a + len(Lpetit)] = Lpetit  # Placer les éléments plus petits
+
+    L = repartition(L, Lpetit, a, a + len(Lpetit), time) # Placer les éléments plus petits
+    # L[a:a + len(Lpetit)] = Lpetit  # Placer les éléments plus petits
+
     L[a + len(Lpetit)] = pivot  # Placer le pivot à sa position correcte
-    L[a + len(Lpetit) + 1:b] = Lgrand  # Placer les éléments plus grands
+    visualisation(L, verif=False, titre="Quick Sort", time=time)  # Visualiser l'état actuel de la liste après partition
+
+    L = repartition(L, Lgrand, a + len(Lpetit) + 1, b, time)
+    # L[a + len(Lpetit) + 1:b] = Lgrand  # Placer les éléments plus grands
 
     posPivot = a + len(Lpetit)  # Nouvelle position du pivot
-
-    # Visualiser l'état actuel de la liste après partition
-    visualisation(L, verif=False, titre="Quick Sort", time=time)
 
     # Appel récursif pour trier la partie gauche (éléments plus petits que le pivot)
     quick(L, time, a=a, b=posPivot)
