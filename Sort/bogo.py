@@ -14,19 +14,18 @@ def bogo(L, time):
     None: This function does not return a value; it visualizes the sorting process.
     """
 
+    LTrier = sorted(L)  # Create a sorted copy for verification
+    passage = False  # Flag to check if the list is sorted
     counter = 0  # Counter for the number of shuffles
 
     while True:
-        passage = True  # Flag to check if the list is sorted
         counter += 1  # Increment the shuffle count
         # print("test", y)  # Print the current shuffle attempt number
         shuffle(L)  # Shuffle the list randomly
 
         # Check if the list is sorted
-        for i in range(1, len(L)):
-            if L[i-1] > L[i]:  # If the previous element is greater than the current
-                passage = False  # Set passage to False if the list is not sorted
-                break  # Exit the loop early if unsorted
+        if L == LTrier:
+            passage = True
 
         # Visualize the current state of the list after shuffling
         visualisation(L, passage, titre="Bogo Sort", time=time, nbTest=counter)

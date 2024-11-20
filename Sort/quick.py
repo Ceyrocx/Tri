@@ -62,9 +62,12 @@ def quick(L, time, a=None, b=None):
 
     # Reconstruct the list with smaller elements, the pivot, and larger elements
     L = repartition(L, Lsmall, a, a + len(Lsmall), time)  # Place smaller elements
+
     L[a + len(Lsmall)] = pivot  # Place the pivot at its correct position
-    visualisation(L, verif=False, titre="Quick Sort", time=time)  # Visualize after placing the pivot
+
     L = repartition(L, Llarge, a + len(Lsmall) + 1, b, time)  # Place larger elements
+
+    visualisation(L, verif=False, titre="Quick Sort", time=time)  # Visualize after placing the pivot
 
     posPivot = a + len(Lsmall)  # New position of the pivot
 
