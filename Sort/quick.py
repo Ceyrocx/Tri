@@ -67,8 +67,6 @@ def quick(L, time, a=None, b=None):
 
     L = repartition(L, Llarge, a + len(Lsmall) + 1, b, time)  # Place larger elements
 
-    visualisation(L, verif=False, titre="Quick Sort", time=time)  # Visualize after placing the pivot
-
     posPivot = a + len(Lsmall)  # New position of the pivot
 
     # Recursive call to sort the left side (elements smaller than the pivot)
