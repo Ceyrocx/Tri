@@ -1,6 +1,5 @@
 from visualisationTri import visualisation
 
-
 def selection(L, time):
     """
     Sorts a list using the selection sort algorithm and visualizes each step of the sorting process.
