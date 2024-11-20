@@ -26,8 +26,9 @@ def run(amount, tri, time):
     Returns:
     None: This function does not return a value; it calls the sorting function.
     """
-    L = [i for i in range(1, amount+1)]
-    shuffle(L)
+
+    L = [i for i in range(1, amount + 1)]  # Creates a list containing integers from 1 to `amount` (inclusive).
+    shuffle(L)  # Randomly shuffles the elements of the list `L` to disorder them.
 
     # Call the appropriate sorting function from the dictionary using the specified algorithm
     dictTri[tri.lower()](L, time)

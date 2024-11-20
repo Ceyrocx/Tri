@@ -3,51 +3,54 @@ import numpy as np
 
 def visualisation(L, verif, time=0.01, titre=None, nbTest=None):
     """
-    Visualizes the state of a list L as a bar chart, updating the heights of the bars
-    based on the values in the list. The visualization is updated at each call.
+    Visualize the state of a list `L` as a bar chart, updating the heights of the bars
+    based on the current values in the list. The visualization dynamically updates with each call.
 
     Parameters:
-    L (list): The list of elements to visualize.
-    bars (list): A list to hold the bar objects for updating their heights.
-    verif (bool): Flag to indicate whether to show the final plot.
-    time (float, optional): Time delay for the pause between updates. Default is 0.01 seconds.
-    titre (str, optional): Title for the plot. Default is None.
-    nbTest (int, optional): Test number to display on the plot. Default is None.
+        L (list): The list of numerical elements to visualize.
+        verif (bool): Flag to indicate if this is the final visualization (highlights bars in red).
+        time (float, optional): Delay (in seconds) between updates. Default is 0.01 seconds.
+        titre (str, optional): Title for the visualization. Default is None.
+        nbTest (int, optional): The test iteration number, displayed on the plot. Default is None.
 
     Returns:
-    None: This function does not return a value; it updates the plot in place.
+        None: This function directly updates the plot.
     """
-    n = len(L)  # Get the length of the list L
-    x = np.arange(1, n + 1, 1)  # Create an array for x-axis values
+    n = len(L)  # Length of the input list
+    x = np.arange(1, n + 1, 1)  # Generate x-axis positions for the bars
 
-    # Check if this is the first call to initialize the plot
+    # Initialize the plot on the first call
     if not hasattr(visualisation, "initialized"):
+        # Store bar references for future updates
         visualisation.bars = []
-        plt.figure()  # Create a new figure for plotting
 
-        # Set up the title and text on the first call
+        # Create the initial figure and configure its settings
+        plt.figure()
         plt.title(titre, color="orange", loc="center", fontweight="bold")
 
-        # Initialize the bars on the first call
-        visualisation.bars.clear()  # Clear any existing bars
-        visualisation.bars.extend(plt.bar(x, L, color="orange"))  # Create the initial bar plot
-        plt.draw()  # Draw the initial figure
-        visualisation.initialized = True  # Set flag to indicate initialization complete
+        # Create the bar chart and store the bars for later updates
+        visualisation.bars.extend(plt.bar(x, L, color="orange"))
+        plt.draw()  # Draw the initial state
+        visualisation.initialized = True  # Mark initialization complete
 
-    # Display the test number if provided
+    # Update the test number if provided
     if nbTest is not None:
+        # Remove previous test number text if it exists
         for txt in plt.gca().texts:
             txt.remove()
-        plt.text(0.98, 1.02, f"Test n°{nbTest}", ha="right", fontsize=10, transform=plt.gca().transAxes)
+        # Add the current test number
+        plt.text(
+            0.98, 1.02, f"Test n°{nbTest}", ha="right", fontsize=10, transform=plt.gca().transAxes
+        )
 
-    # Update bar heights for each call
+    # Update bar heights and colors dynamically
     for bar, height in zip(visualisation.bars, L):
-        bar.set_height(height)  # Update each bar's height with the current value
+        bar.set_height(height)  # Update the bar height
         if verif:
-            bar.set_color("red")
+            bar.set_color("red")  # Highlight the bars in red if final visualization
 
-    plt.pause(time)  # Allow the plot to update with the new heights
+    plt.pause(time)  # Pause to render the updates
 
-    # If verification is requested, show the final plot
+    # Show the plot when final verification is requested
     if verif:
-        plt.show()  # Display the final plot
+        plt.show()

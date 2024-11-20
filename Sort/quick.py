@@ -1,69 +1,79 @@
 from visualisationTri import visualisation
 
-def repartition(L, Lrempl, deb, fin, time):
-    y = 0
-    for i in range(deb, fin):
-        visualisation(L, verif=False, titre="Quick Sort", time=time) # Visualiser l'état actuel de la liste après partition
-        L[i] = Lrempl[y]
-        y += 1
+def repartition(L, Lrempl, start, end, time):
+    """
+    Fills a portion of the list `L` with the elements from `Lrempl`,
+    while visualizing each modification.
+
+    Args:
+        L (list): The original list.
+        Lrempl (list): The elements to insert into `L`.
+        start (int): The start index in `L` for insertion.
+        end (int): The end index in `L` for insertion.
+        time (float): Delay between each visualization step.
+
+    Returns:
+        list: The updated list `L`.
+    """
+
+    y = 0  # Index for traversing `Lrempl`
+    for i in range(start, end):
+        visualisation(L, verif=False, titre="Quick Sort", time=time)  # Visualize the current state
+        L[i] = Lrempl[y]  # Insert the element from `Lrempl` into `L`
+        y += 1  # Move to the next element in `Lrempl`
     return L
 
 def quick(L, time, a=None, b=None):
     """
-    Implémente l'algorithme de tri rapide (Quick Sort) avec visualisation à chaque étape.
+    Implements the Quick Sort algorithm with visualization at each step.
 
     Args:
-        L (list): La liste d'éléments à trier.
-        time (float): Le délai (en secondes) entre chaque étape de visualisation.
-        a (int, optional): L'index de début de la sous-liste à trier. Par défaut None.
-        b (int, optional): L'index de fin de la sous-liste à trier. Par défaut None.
+        L (list): The list of elements to sort.
+        time (float): Delay (in seconds) between each visualization step.
+        a (int, optional): The starting index of the sublist to sort. Defaults to None.
+        b (int, optional): The ending index of the sublist to sort. Defaults to None.
 
     Returns:
-        list: La liste triée L.
+        list: The sorted list `L`.
     """
 
-    # Initialisation des paramètres au premier appel
-    if not hasattr(quick, "initialised"):
-        a = 0  # Index de début de la liste
-        b = len(L)  # Index de fin de la liste
-        quick.LTrier = sorted(L)  # Créer une copie triée pour vérifier la fin du tri
-        quick.initialised = True  # Marquer l'initialisation comme complète
+    # Initialize parameters on the first call
+    if not hasattr(quick, "initialized"):
+        a = 0  # Starting index of the list
+        b = len(L)  # Ending index of the list
+        quick.LTrier = sorted(L)  # Create a sorted copy for verification
+        quick.initialized = True  # Mark initialization as complete
 
-    # Condition d'arrêt de la récursivité: la sous-liste est de taille inférieure à 2
+    # Base case: Stop recursion if the sublist has fewer than 2 elements
     if b - a < 2:
         return L
 
-    # Choisir le dernier élément comme pivot
+    # Choose the last element as the pivot
     pivot = L[b - 1]
-    Lpetit = []  # Liste pour les éléments plus petits que le pivot
-    Lgrand = []  # Liste pour les éléments plus grands que le pivot
+    Lsmall = []  # List for elements smaller than the pivot
+    Llarge = []  # List for elements larger than the pivot
 
-    # Partitionner les éléments autour du pivot
-    for i in range(a, b - 1):  # Parcourir les éléments sauf le pivot
+    # Partition elements around the pivot
+    for i in range(a, b - 1):  # Iterate over elements except the pivot
         if L[i] < pivot:
-            Lpetit.append(L[i])
+            Lsmall.append(L[i])
         else:
-            Lgrand.append(L[i])
+            Llarge.append(L[i])
 
-    # Reconstruire la liste en plaçant les éléments plus petits, le pivot, et les plus grands
+    # Reconstruct the list with smaller elements, the pivot, and larger elements
+    L = repartition(L, Lsmall, a, a + len(Lsmall), time)  # Place smaller elements
+    L[a + len(Lsmall)] = pivot  # Place the pivot at its correct position
+    visualisation(L, verif=False, titre="Quick Sort", time=time)  # Visualize after placing the pivot
+    L = repartition(L, Llarge, a + len(Lsmall) + 1, b, time)  # Place larger elements
 
-    L = repartition(L, Lpetit, a, a + len(Lpetit), time) # Placer les éléments plus petits
-    # L[a:a + len(Lpetit)] = Lpetit  # Placer les éléments plus petits
+    posPivot = a + len(Lsmall)  # New position of the pivot
 
-    L[a + len(Lpetit)] = pivot  # Placer le pivot à sa position correcte
-    visualisation(L, verif=False, titre="Quick Sort", time=time)  # Visualiser l'état actuel de la liste après partition
-
-    L = repartition(L, Lgrand, a + len(Lpetit) + 1, b, time)
-    # L[a + len(Lpetit) + 1:b] = Lgrand  # Placer les éléments plus grands
-
-    posPivot = a + len(Lpetit)  # Nouvelle position du pivot
-
-    # Appel récursif pour trier la partie gauche (éléments plus petits que le pivot)
+    # Recursive call to sort the left side (elements smaller than the pivot)
     quick(L, time, a=a, b=posPivot)
 
-    # Appel récursif pour trier la partie droite (éléments plus grands que le pivot)
+    # Recursive call to sort the right side (elements larger than the pivot)
     quick(L, time, a=posPivot + 1, b=b)
 
-    # Si la liste est complètement triée, effectuer la visualisation finale
+    # Final visualization once the list is fully sorted
     if L == quick.LTrier:
         visualisation(L, verif=True, titre="Quick Sort", time=time)

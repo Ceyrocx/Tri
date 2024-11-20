@@ -13,6 +13,7 @@ def bogo(L, time):
     Returns:
     None: This function does not return a value; it visualizes the sorting process.
     """
+
     counter = 0  # Counter for the number of shuffles
 
     while True:
