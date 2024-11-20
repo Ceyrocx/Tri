@@ -6,7 +6,7 @@ from Sort.bubble import bubble
 from Sort.frequency import frequency
 from Sort.quick import quick
 
-# Dictionnaire associant les noms d'algorithmes à leurs fonctions
+# Dictionary associating algorithm names with their respective functions
 dictTri = {
     "bogo": bogo,    # Algorithme de tri Bogo
     "bubble": bubble,  # Algorithme de tri à bulles
