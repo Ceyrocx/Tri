@@ -1,6 +1,28 @@
 from math import ceil, factorial
 import numpy as np
 import matplotlib.pyplot as plt
+import time as tps
+
+
+def clock(fct, *args):
+    """
+    Measures the execution time of a function.
+
+    Args:
+        fct (function): The function whose execution time is to be measured.
+        *args: Arguments to be passed to the function.
+
+    Returns:
+        The result of the function call.
+
+    Prints:
+        The execution time of the function in seconds.
+    """
+    t1 = tps.perf_counter()  # Record start time
+    result = fct(*args)  # Call the function with the provided arguments
+    t2 = tps.perf_counter()  # Record end time
+    print(f"Execution time: {t2 - t1} seconds")  # Print the execution time
+    return result
 
 
 def verif(x, tri):
