@@ -4,27 +4,27 @@ import matplotlib.pyplot as plt
 
 
 def verif(x, tri):
-	"""
-    Vérifie si une liste est triée après application d'un algorithme de tri.
+    """
+    Verifies if a list is sorted after applying a sorting algorithm.
 
     Args:
-        x (list): La liste d'origine à trier.
-        tri (function): La fonction de tri à appliquer à la liste.
+        x (list): The original list to be sorted.
+        tri (function): The sorting function to be applied to the list.
 
     Returns:
-        bool: True si la liste est triée, False sinon.
+        bool: True if the list is sorted, False otherwise.
     """
-	# Applique l'algorithme de tri à la liste d'entrée x
-	L = tri(x)
+    # Apply the sorting algorithm to the input list x
+    L = tri(x)
 
-	# Parcourt la liste triée pour vérifier l'ordre
-	for i in range(1, len(L)):
-		# Si un élément est plus grand que l'élément suivant, la liste n'est pas triée
-		if L[i - 1] > L[i]:
-			return False
+    # Iterate through the sorted list to check the order
+    for i in range(1, len(L)):
+        # If an element is greater than the next one, the list is not sorted
+        if L[i - 1] > L[i]:
+            return False
 
-	# Si aucun élément ne viole l'ordre, la liste est triée
-	return True
+    # If no element violates the order, the list is sorted
+    return True
 
 
 def visualisation2(L, bars, verif, time=0.01, titre=None, nbTest=None):
@@ -101,39 +101,75 @@ def moyenne(x, z, seuil):
 
 
 def fusion(Lpetit, Lgrand, time):
-    result = []
+    """
+    Merges two sorted lists, `Lpetit` and `Lgrand`, into a single sorted list,
+    visualizing the result after each merge step.
 
+    Args:
+        Lpetit (list): The list of smaller elements.
+        Lgrand (list): The list of larger elements.
+        time (float): The delay (in seconds) between each visualization.
+
+    Returns:
+        list: A merged list containing elements from both `Lpetit` and `Lgrand`, sorted.
+    """
+
+    result = []  # List to store the merged result
+
+    # Add elements from Lpetit to result
     if len(Lpetit) > 0:
         for val in Lpetit:
             result.append(val)
 
+    # Add elements from Lgrand to result
     if len(Lgrand) > 0:
         for val in Lgrand:
             result.append(val)
 
+    # Visualize the current state of the merged list
     visualisation(result, verif=False, titre="Quick Sort", time=time)
-    print(result)
-    return result
+    print(result)  # Print the merged list (optional for debugging)
+    return result  # Return the merged list
+
 
 def quick(LTri, a, b, time):
+    """
+    Implements the Quick Sort algorithm with recursive partitioning and visualization at each step.
+
+    Args:
+        LTri (list): The list of elements to be sorted.
+        a (int): The start index of the current sublist to be sorted.
+        b (int): The end index of the current sublist to be sorted.
+        time (float): The delay (in seconds) between each visualization.
+
+    Returns:
+        list: The sorted list.
+    """
+
+    # Base case: if the sublist size is less than 1, return the list as it's already sorted
     if b - a < 1:
         return LTri
 
-
+    # Choose the pivot as the last element in the current sublist
     pivot = LTri[b-a-1]
-    Lpetit = []
-    Lgrand = []
+    Lpetit = []  # List to store elements smaller than the pivot
+    Lgrand = []  # List to store elements greater than the pivot
 
+    # Partition the list into smaller and larger elements
     for element in LTri:
         if element < pivot:
-            Lpetit.append(element)
+            Lpetit.append(element)  # Append smaller elements
         elif element > pivot:
-            Lgrand.append(element)
+            Lgrand.append(element)  # Append larger elements
 
-    Lpetit.append(pivot)
+    Lpetit.append(pivot)  # Add the pivot to the list of smaller elements
 
-    posPivot = len(Lpetit)-1
+    # Determine the new position of the pivot after partitioning
+    posPivot = len(Lpetit) - 1
     b = posPivot + len(Lgrand)
 
+    # Visualize the current state of the list
     visualisation(LTri, verif=False, titre="Quick Sort", time=time)
-    return fusion(quick(Lpetit, a, posPivot, time), quick(Lgrand, posPivot+1, b, time), time)
+
+    # Recursively sort the left and right sublists and merge them
+    return fusion(quick(Lpetit, a, posPivot, time), quick(Lgrand, posPivot + 1, b, time), time)
