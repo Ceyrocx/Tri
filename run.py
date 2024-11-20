@@ -36,15 +36,15 @@ def run(amount, tri, time):
 
 if __name__ == "__main__":
     # Initialize the argument parser for command-line arguments
-    parser = argparse.ArgumentParser(description="Un exemple de script avec des arguments.")
+    parser = argparse.ArgumentParser(description="An example script with command-line arguments.")
 
-    # Définir les arguments
-    parser.add_argument("-n", "--amount", type=int, default=5, help="Nombre d'élément à trier")
-    parser.add_argument("-t", "--tri", type=str, default="bogo", help="Tri à utiliser (bogo ou bubble)")
-    parser.add_argument("-s", "--speed", type=float, default=0.01, help="Vitesse du Tri")
+    # Define the arguments
+    parser.add_argument("-n", "--amount", type=int, default=5, help="Number of elements to sort")
+    parser.add_argument("-t", "--tri", type=str, default="bogo", help="Sorting algorithm to use (bogo or bubble)")
+    parser.add_argument("-s", "--speed", type=float, default=0.01, help="Speed of the sorting visualization")
 
-    # Analyser les arguments
+    # Parse the arguments
     args = parser.parse_args()
 
-    # Appeler la fonction avec les paramètres obtenus
+    # Call the function with the obtained parameters
     run(amount=args.amount, tri=args.tri, time=args.speed)
