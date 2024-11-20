@@ -12,9 +12,8 @@ def bubble(L, time):
     if they are in the wrong order. The pass through the list is repeated until the list is sorted.
     """
 
-    n = len(L)  # Get the length of the list L
+    j = len(L)  # Get the length of the list L
     trier = False
-    j = n
 
     # Outer loop for each pass through the list
     while j >= 1 and trier is False:
