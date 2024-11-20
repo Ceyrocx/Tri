@@ -5,13 +5,15 @@ from Sort.bogo import bogo
 from Sort.bubble import bubble
 from Sort.frequency import frequency
 from Sort.quick import quick
+from Sort.selection import selection
 
 # Dictionary associating algorithm names with their respective functions
 dictTri = {
     "bogo": bogo,    # Algorithme de tri Bogo
     "bubble": bubble,  # Algorithme de tri à bulles
     "frequency": frequency,
-    "quick": quick
+    "quick": quick,
+    "selection": selection,
 }
 
 def run(amount, tri, time):
