@@ -122,7 +122,7 @@ def moyenne(x, z, seuil):
 # print(moyenne(x, z, 10000))  # Uncomment to run the average computation
 
 
-def fusion(Lpetit, Lgrand, time):
+def fusion2(Lpetit, Lgrand, time):
     """
     Merges two sorted lists, `Lpetit` and `Lgrand`, into a single sorted list,
     visualizing the result after each merge step.
@@ -194,4 +194,66 @@ def quick(LTri, a, b, time):
     visualisation(LTri, verif=False, titre="Quick Sort", time=time)
 
     # Recursively sort the left and right sublists and merge them
-    return fusion(quick(Lpetit, a, posPivot, time), quick(Lgrand, posPivot + 1, b, time), time)
+    return fusion2(quick(Lpetit, a, posPivot, time), quick(Lgrand, posPivot + 1, b, time), time)
+
+
+def fusion(L, L1, L2, time):
+    """
+    Merges two sorted sublists (L1 and L2) into the main list L while maintaining sorted order,
+    and visualizes the process.
+
+    Parameters:
+    L (list): The main list where the merged result will be placed.
+    L1 (list): The first sorted sublist.
+    L2 (list): The second sorted sublist.
+    time (float): The time delay between visualizations, in seconds.
+
+    The function compares elements from L1 and L2, places the smaller of the two in L, and
+    continues this process until all elements are merged into L.
+    """
+
+    a = 0  # Index for L1
+    b = 0  # Index for L2
+
+    # Merge the two lists while there are elements in both L1 and L2
+    while a < len(L1) and b < len(L2):
+        print(L[a + b])  # Print the current element for debugging
+        if L1[a] <= L2[b]:
+            L[a + b] = L1[a]  # Place the smaller element from L1 into L
+            a += 1  # Move to the next element in L1
+        else:
+            L[a + b] = L2[b]  # Place the smaller element from L2 into L
+            b += 1  # Move to the next element in L2
+
+    # If there are remaining elements in L1, append them to L
+    if a < len(L1):
+        L[a + b: len(L)] = L1[a: len(L1)]
+    else:
+        # If there are remaining elements in L2, append them to L
+        L[a + b: len(L)] = L2[b: len(L2)]
+
+    return L
+
+
+def partage(L, time):
+    """
+    Recursively divides the list into two halves and merges them back in sorted order using the merge function.
+
+    Parameters:
+    L (list): The list to be divided and sorted.
+    time (float): The time delay between visualizations, in seconds.
+
+    This function implements the merge sort algorithm by recursively dividing the list until sublists
+    of length 1 are reached and then merging them back in a sorted manner.
+    """
+
+    # Base case: If the list has one or zero elements, it's already sorted
+    if len(L) <= 1:
+        return L
+
+    # Divide the list into two halves
+    droite = L[: len(L) // 2]  # First half (left)
+    gauche = L[len(L) // 2:]  # Second half (right)
+
+    # Recursively partition and merge the two halves, then return the result
+    return fusion(L, partage(droite, time), partage(gauche, time), time)
