@@ -73,3 +73,5 @@ def quick(L, time, a=None, b=None):
 
     # Recursive call to sort the right side (elements larger than the pivot)
     quick(L, time, a=posPivot + 1, b=b)
+
+    visualisation(L, titre="Quick Sort", time=time)  # Visualize the current state

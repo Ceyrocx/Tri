@@ -42,6 +42,9 @@ def merge(L, time, left=None, right=None):
     # Merge the sorted halves back together
     fusion(L, left, right, mid, time)
 
+    # Visualize the list after merging the halves
+    visualisation(L, titre="Merge Sort", time=time)
+
 def fusion(L, left, right, mid, time):
     """
     Merges two sorted sublists (left and right halves) into a single sorted list.
