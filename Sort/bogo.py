@@ -28,7 +28,7 @@ def bogo(L, time):
             passage = True
 
         # Visualize the current state of the list after shuffling
-        visualisation(L, passage, titre="Bogo Sort", time=time, nbTest=counter)
+        visualisation(L, titre="Bogo Sort", time=time, nbTest=counter)
 
         # Optionally return the sorted list and the number of attempts
         if passage:

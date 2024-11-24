@@ -26,10 +26,7 @@ def bubble(L, time):
                 L[i], L[i-1] = L[i-1], L[i]  # Swap the largest element to the end
                 trier = False
             # Visualize the current state of the list after each comparison
-            visualisation(L, verif=False, titre="Bubble Sort", time=time)
+            visualisation(L, titre="Bubble Sort", time=time)
         j -= 1
-
-    # Final visualization when sorting is complete
-    visualisation(L, verif=True, titre="Bubble sort", time=time)
 
     # return L  # Optionally return the sorted list (commented out)

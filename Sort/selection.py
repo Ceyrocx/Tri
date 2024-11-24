@@ -29,7 +29,5 @@ def selection(L, time):
         L[i], L[indMin] = L[indMin], L[i]
 
         # Visualize the current state of the list after each swap
-        visualisation(L, verif=False, titre="Selection Sort", time=time)
+        visualisation(L, titre="Selection Sort", time=time)
 
-    # Final visualization when sorting is complete
-    visualisation(L, verif=True, titre="Selection Sort", time=time)

@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-def visualisation(L, verif, time=0.01, titre=None, nbTest=None):
+def visualisation(L, time=0.01, titre=None, nbTest=None):
     """
     Visualize the state of a list `L` as a bar chart, updating the heights of the bars
     based on the current values in the list. The visualization dynamically updates with each call.
@@ -18,9 +18,9 @@ def visualisation(L, verif, time=0.01, titre=None, nbTest=None):
     """
     n = len(L)  # Length of the input list
     x = np.arange(1, n + 1, 1)  # Generate x-axis positions for the bars
-
     # Initialize the plot on the first call
     if not hasattr(visualisation, "initialized"):
+        visualisation.LTrier = sorted(L)
         # Store bar references for future updates
         visualisation.bars = []
 
@@ -46,11 +46,11 @@ def visualisation(L, verif, time=0.01, titre=None, nbTest=None):
     # Update bar heights and colors dynamically
     for bar, height in zip(visualisation.bars, L):
         bar.set_height(height)  # Update the bar height
-        if verif:
+        if L == visualisation.LTrier:
             bar.set_color("red")  # Highlight the bars in red if final visualization
 
     plt.pause(time)  # Pause to render the updates
 
     # Show the plot when final verification is requested
-    if verif:
+    if L == visualisation.LTrier:
         plt.show()

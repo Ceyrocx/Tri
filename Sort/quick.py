@@ -18,7 +18,7 @@ def repartition(L, Lrempl, start, end, time):
 
     y = 0  # Index for traversing `Lrempl`
     for i in range(start, end):
-        visualisation(L, verif=False, titre="Quick Sort", time=time)  # Visualize the current state
+        visualisation(L, titre="Quick Sort", time=time)  # Visualize the current state
         L[i] = Lrempl[y]  # Insert the element from `Lrempl` into `L`
         y += 1  # Move to the next element in `Lrempl`
     return L
@@ -41,7 +41,6 @@ def quick(L, time, a=None, b=None):
     if not hasattr(quick, "initialized"):
         a = 0  # Starting index of the list
         b = len(L)  # Ending index of the list
-        quick.LTrier = sorted(L)  # Create a sorted copy for verification
         quick.initialized = True  # Mark initialization as complete
 
     # Base case: Stop recursion if the sublist has fewer than 2 elements
@@ -74,7 +73,3 @@ def quick(L, time, a=None, b=None):
 
     # Recursive call to sort the right side (elements larger than the pivot)
     quick(L, time, a=posPivot + 1, b=b)
-
-    # Final visualization once the list is fully sorted
-    if L == quick.LTrier:
-        visualisation(L, verif=True, titre="Quick Sort", time=time)
