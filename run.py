@@ -6,6 +6,7 @@ from Sort.bubble import bubble
 from Sort.frequency import frequency
 from Sort.quick import quick
 from Sort.selection import selection
+from Sort.fusion import merge
 
 # Dictionary associating algorithm names with their respective functions
 dictTri = {
@@ -14,6 +15,7 @@ dictTri = {
     "frequency": frequency,
     "quick": quick,
     "selection": selection,
+    "merge": merge,
 }
 
 def run(amount, tri, time):
