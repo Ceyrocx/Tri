@@ -7,6 +7,7 @@ from Sort.frequency import frequency
 from Sort.quick import quick
 from Sort.selection import selection
 from Sort.fusion import merge
+from Sort.insertion import insertion
 
 # Dictionary associating algorithm names with their respective functions
 dictTri = {
@@ -16,6 +17,7 @@ dictTri = {
     "quick": quick,
     "selection": selection,
     "merge": merge,
+    "insertion": insertion,
 }
 
 def run(amount, tri, time):
