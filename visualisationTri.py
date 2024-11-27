@@ -25,7 +25,7 @@ def visualisation(L, time=0.01, titre=None, nbTest=None):
         visualisation.bars = []
 
         # Create the initial figure and configure its settings
-        plt.figure()
+        plt.figure(figsize=(8, 6))
         plt.title(titre, color="orange", loc="center", fontweight="bold")
 
         # Create the bar chart and store the bars for later updates
