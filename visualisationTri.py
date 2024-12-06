@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import winsound
+from math import log
 
 def visualisation(L, time=0.01, titre=None, nbTest=None):
     """
@@ -23,6 +25,7 @@ def visualisation(L, time=0.01, titre=None, nbTest=None):
         visualisation.LTrier = sorted(L)  # Store the sorted version of the list for later checks
         visualisation.bars = []  # Initialize a list to store bar references for updates
         visualisation.ancienL = L  # Track the previous state of the list
+        visualisation.i= 0
 
         # Create the initial figure and configure its settings
         plt.figure(figsize=(8, 6))
@@ -45,14 +48,18 @@ def visualisation(L, time=0.01, titre=None, nbTest=None):
 
     # Update bar heights and colors dynamically
     i = 0
-    for bar, height in zip(visualisation.bars, L):
-        bar.set_color("orange")  # Set the default color of the bars to orange
-        bar.set_height(height)  # Update the height of each bar
-        if height != visualisation.ancienL[i]:  # If the bar height has changed
-            bar.set_color("green")  # Highlight it in green
-        if L == visualisation.LTrier:  # If the list is fully sorted
-            bar.set_color("red")  # Change the color of the bars to red for the final visualization
-        i += 1
+
+    if visualisation.i == 0:
+        for bar, height in zip(visualisation.bars, L):
+            bar.set_color("orange")  # Set the default color of the bars to orange
+            bar.set_height(height)  # Update the height of each bar
+
+            if height != visualisation.ancienL[i]:  # If the bar height has changed
+                winsound.Beep(round(2000*log(height)+2000), 50)
+                bar.set_color("green")  # Highlight it in green
+                visualisation.dernier = bar
+
+            i += 1
 
     # Store the current list state to track changes in the next iteration
     visualisation.ancienL = L[:]
@@ -62,4 +69,24 @@ def visualisation(L, time=0.01, titre=None, nbTest=None):
 
     # Show the plot when the list is fully sorted (final verification)
     if L == visualisation.LTrier:
+
+        if visualisation.i == 0:
+            visualisation.dernier.set_color("orange")
+            plt.pause(1)
+
+        while visualisation.i < len(L):
+            visualisation.bars[visualisation.i].set_color("green")
+            winsound.Beep(round(2000 * log(L[visualisation.i]) + 2000), 50)
+            visualisation.i += 1
+            visualisation(L, time, titre=titre, nbTest=nbTest)
+
+        for bar in visualisation.bars:
+            bar.set_color("red")  # Change the color of the bars to red for the final visualization
+
+        plt.pause(1)
+
+        if  visualisation.i == len(L):
+            winsound.PlaySound('Sound/Rick_Roll.wav', winsound.SND_FILENAME)
+            visualisation.i += 1
+
         plt.show()
