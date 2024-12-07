@@ -1,76 +1,121 @@
-# **Algorithmes de Tri avec Visualisation**
+# **Sorting Algorithms with Visualization**
 
-Bienvenue dans ce projet qui implémente plusieurs algorithmes de tri classiques en Python, avec une visualisation graphique dynamique utilisant Matplotlib. L'objectif est d'aider à comprendre visuellement le fonctionnement de ces algorithmes de tri grâce à des animations.
+Welcome to this project that implements several classic sorting algorithms in Python, with dynamic visualizations using Matplotlib. The goal is to help understand the inner workings of these sorting algorithms through visual animations.
 
-## **Fonctionnalités**
+## **Features**
 
-- **Algorithmes de tri disponibles** :
-  - **Bogo Sort** : Un algorithme inefficace mais amusant qui tente de trier les éléments en les mélangeant aléatoirement jusqu'à ce qu'ils soient triés.
-  - **Bubble Sort** : Un algorithme plus classique qui compare les éléments adjacents et les échange si nécessaire, triant la liste de manière itérative.
+- **Available Sorting Algorithms**:
+  - **Bogo Sort**: An inefficient but amusing algorithm that randomly shuffles the elements until they are sorted.
+  - **Bubble Sort**: A more traditional algorithm that compares adjacent elements and swaps them if needed, sorting the list iteratively.
+  - **Selection Sort**: An algorithm that repeatedly selects the smallest element from the unsorted portion and places it in the sorted portion.
+  - **Insertion Sort**: An algorithm that builds the final sorted array one item at a time.
+  - **Quick Sort**: A divide-and-conquer algorithm that partitions the list and recursively sorts the partitions.
+  - **Merge Sort**: Another divide-and-conquer algorithm that divides the list into halves and sorts each recursively.
+  - **Frequency Sort**: A custom sorting algorithm that sorts based on the frequency of elements.
 
-- **Visualisation dynamique** :
-  - Les algorithmes sont accompagnés d'une visualisation graphique en temps réel qui montre les étapes de tri.
-  - Les barres représentant les éléments sont mises à jour au fur et à mesure que l'algorithme effectue ses comparaisons et ses échanges.
+- **Dynamic Visualization**:
+  - The algorithms are accompanied by real-time graphical visualizations showing each step of the sorting process.
+  - Bars representing the elements are updated as the algorithm performs comparisons and swaps.
 
-- **Paramètres configurables** :
-  - Choisissez le nombre d'éléments à trier.
-  - Sélectionnez la vitesse de l'animation.
-  - Choisissez l'algorithme de tri souhaité.
+- **Configurable Parameters**:
+  - Choose the number of elements to sort.
+  - Select the sorting algorithm you want to visualize.
+  - Control the speed of the animation.
 
 ## **Installation**
 
-### Prérequis
-Assurez-vous d'avoir Python installé (version 3.6 ou supérieure). Ensuite, vous devrez installer les dépendances Python listées dans le fichier `requirements.txt`.
+### Prerequisites
+Make sure you have Python installed (version 3.6 or later). Then, you need to install the Python dependencies listed in the `requirements.txt` file.
 
-1. Clonez ce dépôt :
-   git clone https://github.com/Ceyrocx/tri.git
+1. Clone this repository:ns, feel free to open an issue or contact me directly.
+    git clone: https://github.com/Ceyrocx/tri.git
 
-2. Installez les dépendances requises :
-   pip install -r requirements.txt
+2. Install the required dependencies: pip install -r requirements.txt
 
-### Dépendances
+### Dependencies
 
-Les principales dépendances de ce projet sont :
+The main dependencies for this project are:
 
-- `matplotlib` : Pour la visualisation graphique des algorithmes de tri.
-- `numpy` : Pour gérer les séquences numériques (utilisé pour les axes dans les graphiques).
+- `matplotlib`: For graphical visualization of the sorting algorithms.
+- `numpy`: For managing numerical sequences (used for axis creation in the graphs).
 
-## **Utilisation**
+## **Usage**
 
-Ce projet peut être utilisé en ligne de commande avec des arguments permettant de configurer l'algorithme, le nombre d'éléments à trier, et la vitesse de la visualisation.
+This project can be run from the command line with arguments to configure the algorithm, number of elements to sort, and animation speed.
 
-### Commande de base
+### Basic Command
 
-python run.py -n nombre d'éléments -t algorithme -s vitesse
+- **Sort 100 elements using the Bubble Sort algorithm with a 0.05-second delay between each step**:
+    python run.py -n 100 -t "bubble" -s 0.05
+- **Sort 20 elements using the Selection Sort algorithm with a 0.000001-second delay**:
+    python run.py -n 20 -t "selection" -s 0.000001
 
-### Exemples
+### Available Options
 
-- **Trier 10 éléments avec le tri Bogo à une vitesse de 0,05 secondes entre chaque étape** :
-  python run.py -n 100 -t "bubble" -s 0.05
+- `-n`, `--amount`: Number of elements to sort (default: 5).
+- `-t`, `--tri`: Sorting algorithm to use (`bogo`, `bubble`, `selection`, `insertion`, `quick`, `merge`, `frequency`; default: `bogo`).
+- `-s`, `--speed`: Time delay (in seconds) between each visualization step (default: 0.01).
+- `-m`, `--sound`: Enable or disable sound during visualization (default: False).
 
-### Options disponibles
+## **Project Organization**
 
-- `-n`, `--amount` : Nombre d'éléments à trier (par défaut : 5).
-- `-t`, `--tri` : Algorithme de tri à utiliser (`bogo` ou `bubble`, par défaut : `bogo`).
-- `-s`, `--speed` : Temps de pause (en secondes) entre chaque étape de la visualisation (par défaut : 0,01).
+- **`run.py`**: Entry point for the project, handles command-line arguments and starts the selected sorting algorithm.
+- **`bogo.py`**: Contains the implementation and visualization of the Bogo Sort algorithm.
+- **`bubble.py`**: Contains the implementation and visualization of the Bubble Sort algorithm.
+- **`selection.py`**: Contains the implementation and visualization of the Selection Sort algorithm.
+- **`insertion.py`**: Contains the implementation and visualization of the Insertion Sort algorithm.
+- **`quick.py`**: Contains the implementation and visualization of the Quick Sort algorithm.
+- **`merge.py`**: Contains the implementation and visualization of the Merge Sort algorithm.
+- **`frequency.py`**: Contains the implementation and visualization of the Frequency Sort algorithm.
+- **`visualisationTri.py`**: Provides the functions for visualizing the sorting algorithms.
+- **`requirements.txt`**: A file listing the necessary dependencies for the project.
 
-## **Organisation du Projet**
+## **Functionality Overview**
 
-- **`run.py`** : Point d'entrée du projet, gère les arguments de la ligne de commande et lance le tri sélectionné.
-- **`bogo.py`** : Contient l'implémentation et la visualisation du Bogo Sort.
-- **`bubble.py`** : Contient l'implémentation et la visualisation du Bubble Sort.
-- **`visualisationTri.py`** : Fournit les fonctions de visualisation pour les algorithmes de tri.
-- **`requirements.txt`** : Fichier listant les dépendances nécessaires au projet.
+### Sorting Algorithms
 
-## **Améliorations Futures**
+Each algorithm sorts the list and updates the visualization in real-time. The primary functions for sorting are implemented as follows:
 
-Voici quelques idées pour améliorer ce projet :
+- **Bogo Sort**: Randomly shuffles elements until the list is sorted.
+- **Bubble Sort**: Repeatedly compares adjacent elements and swaps them if they are in the wrong order.
+- **Selection Sort**: Selects the smallest unsorted element and places it in the correct position.
+- **Insertion Sort**: Inserts each element into its correct position in the sorted portion of the list.
+- **Quick Sort**: Partitions the list and recursively sorts each part.
+- **Merge Sort**: Recursively divides the list into halves and sorts each part.
 
-- Ajouter d'autres algorithmes de tri tels que QuickSort, MergeSort, Insertion Sort, etc.
-- Améliorer l'interface utilisateur pour rendre les visualisations plus interactives.
-- Permettre de personnaliser davantage les couleurs et les animations.
-- Ajouter des tests unitaires pour assurer le bon fonctionnement des algorithmes.
+Each sorting function visualizes the state of the list after each step, with a delay for better understanding.
+
+### Visualization
+
+- **Bars**: Each element of the list is represented by a bar, where the height of the bar corresponds to the value of the element.
+- **Color Change**: As the algorithm progresses, the bars change color to indicate comparisons and swaps.
+- Green: A bar has changed.
+- Red: Final sorted state.
+- **Sound**: Optionally, a beep sound plays each time an element changes, with a frequency based on the height of the bar.
+- The frequency increases as the height of the bar increases, making the sound distinctive and easily recognizable.
+
+### Sound
+
+- The `winsound.Beep` function is used to play a sound when an element changes position during sorting.
+- The frequency of the sound is calculated dynamically to be both audible and distinct for each change, with the formula ensuring that the beep remains clear and easily distinguishable.
+
+### Parameters for `visualisationTri.py`
+
+- **`L`**: List of elements to be sorted.
+- **`time`**: Delay between each step of the visualization (in seconds).
+- **`sound`**: Whether to enable sound during the visualization.
+- **`titre`**: Title for the visualization (optional).
+- **`nbTest`**: Test iteration number for display (optional).
+
+## **Future Improvements**
+
+Here are some ideas for enhancing this project:
+
+- Add additional sorting algorithms like Heap Sort, Radix Sort, and Tim Sort.
+- Improve the user interface to make the visualizations more interactive (e.g., allow pausing and resuming the sorting process).
+- Customize the colors and animations for better visual appeal.
+- Add unit tests to ensure that each sorting algorithm functions correctly.
 
 ## **Contact**
 
-Si vous avez des questions ou des suggestions, n'hésitez pas à ouvrir une issue ou à me contacter directement.
+If you have any questions or suggestions, feel free to open an issue or contact me directly.
