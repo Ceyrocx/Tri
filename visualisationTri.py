@@ -84,9 +84,7 @@ def visualisation(L, time, sound, titre=None, nbTest=None):
             visualisation.i += 1
             visualisation(L, time, sound, titre=titre, nbTest=nbTest)
 
-        finish = True
-
-        if finish == True and visualisation.verif:
+        if visualisation.verif:
             visualisation.verif = False
             for bar in visualisation.bars:
                 bar.set_color("red")  # Change the color of the bars to red for the final visualization
