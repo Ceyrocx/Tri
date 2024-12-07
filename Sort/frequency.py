@@ -1,6 +1,6 @@
 from visualisationTri import visualisation
 
-def frequency(L, time):
+def frequency(L, time, sound):
     """
     Implements the Frequency Sort algorithm with visualization.
 
@@ -19,11 +19,11 @@ def frequency(L, time):
     for value in L:
         LTrier[value - 1] += 1  # Increment the position corresponding to the value
 
-    visualisation(L, titre="Frequency Sort", time=time)
+    visualisation(L, sound=sound, titre="Frequency Sort", time=time)
     # Reconstruct the list `L` based on the counted frequencies
     for i in range(len(LTrier)):
         for j in range(i, i + LTrier[i]):  # For each occurrence of the value `i + 1`
             L[j] = i + 1  # Place the value in the sorted list
             # Visualize the current state of the list after each insertion
-            visualisation(L, titre="Frequency Sort", time=time)
+            visualisation(L, sound=sound, titre="Frequency Sort", time=time)
 

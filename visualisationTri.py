@@ -3,7 +3,7 @@ import numpy as np
 import winsound
 from math import log
 
-def visualisation(L, time=0.01, titre=None, nbTest=None):
+def visualisation(L, time, sound, titre=None, nbTest=None):
     """
     Visualize the state of a list `L` as a bar chart, updating the heights of the bars
     based on the current values in the list. The visualization dynamically updates with each call.
@@ -26,6 +26,7 @@ def visualisation(L, time=0.01, titre=None, nbTest=None):
         visualisation.bars = []  # Initialize a list to store bar references for updates
         visualisation.ancienL = L  # Track the previous state of the list
         visualisation.i= 0
+        visualisation.verif = True
 
         # Create the initial figure and configure its settings
         plt.figure(figsize=(8, 6))
@@ -55,7 +56,8 @@ def visualisation(L, time=0.01, titre=None, nbTest=None):
             bar.set_height(height)  # Update the height of each bar
 
             if height != visualisation.ancienL[i]:  # If the bar height has changed
-                winsound.Beep(round(2000*log(height)+2000), 50)
+                if sound is True:
+                    winsound.Beep(round(2000*log(height)+2000), 50)
                 bar.set_color("green")  # Highlight it in green
                 visualisation.dernier = bar
 
@@ -71,22 +73,28 @@ def visualisation(L, time=0.01, titre=None, nbTest=None):
     if L == visualisation.LTrier:
 
         if visualisation.i == 0:
-            visualisation.dernier.set_color("orange")
+            for bar in visualisation.bars:
+                bar.set_color("orange")  # Change the color of the bars to red for the final visualization
             plt.pause(1)
 
         while visualisation.i < len(L):
             visualisation.bars[visualisation.i].set_color("green")
-            winsound.Beep(round(2000 * log(L[visualisation.i]) + 2000), 50)
+            if sound:
+                winsound.Beep(round(2000 * log(L[visualisation.i]) + 2000), 50)
             visualisation.i += 1
-            visualisation(L, time, titre=titre, nbTest=nbTest)
+            visualisation(L, time, sound, titre=titre, nbTest=nbTest)
 
-        for bar in visualisation.bars:
-            bar.set_color("red")  # Change the color of the bars to red for the final visualization
+        finish = True
 
-        plt.pause(1)
+        if finish == True and visualisation.verif:
+            visualisation.verif = False
+            for bar in visualisation.bars:
+                bar.set_color("red")  # Change the color of the bars to red for the final visualization
 
-        if  visualisation.i == len(L):
-            winsound.PlaySound('Sound/Rick_Roll.wav', winsound.SND_FILENAME)
-            visualisation.i += 1
 
-        plt.show()
+            if  visualisation.i == len(L) and sound:
+                plt.pause(1)
+                winsound.PlaySound('Sound/Rick_Roll.wav', winsound.SND_FILENAME)
+                visualisation.i += 1
+
+            plt.show()

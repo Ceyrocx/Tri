@@ -1,7 +1,7 @@
 from random import shuffle
 from visualisationTri import visualisation
 
-def bogo(L, time):
+def bogo(L, time, sound):
     """
     Sorts a list using the Bogo sort algorithm, which repeatedly shuffles the list
     until it is sorted, and visualizes each shuffle attempt.
@@ -28,7 +28,7 @@ def bogo(L, time):
             passage = True
 
         # Visualize the current state of the list after shuffling
-        visualisation(L, titre="Bogo Sort", time=time, nbTest=counter)
+        visualisation(L, sound=sound, titre="Bogo Sort", time=time, nbTest=counter)
 
         # Optionally return the sorted list and the number of attempts
         if passage:

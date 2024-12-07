@@ -1,6 +1,6 @@
 from visualisationTri import visualisation
 
-def selection(L, time):
+def selection(L, time, sound):
     """
     Sorts a list using the selection sort algorithm and visualizes each step of the sorting process.
 
@@ -29,5 +29,5 @@ def selection(L, time):
         L[i], L[indMin] = L[indMin], L[i]
 
         # Visualize the current state of the list after each swap
-        visualisation(L, titre="Selection Sort", time=time)
+        visualisation(L, sound=sound, titre="Selection Sort", time=time)
 

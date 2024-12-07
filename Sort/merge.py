@@ -1,6 +1,6 @@
 from visualisationTri import visualisation
 
-def merge(L, time, left=None, right=None):
+def merge(L, time, sound, left=None, right=None):
     """
     Recursively implements the merge sort algorithm and visualizes the process.
 
@@ -28,24 +28,24 @@ def merge(L, time, left=None, right=None):
     mid = (left + right) // 2
 
     # Visualize the current state of the list
-    visualisation(L, titre="Merge Sort", time=time)
+    visualisation(L, sound=sound, titre="Merge Sort", time=time)
 
     # Recursively sort the left half of the list
-    merge(L, time, left, mid)
+    merge(L, time, sound, left, mid)
 
     # Recursively sort the right half of the list
-    merge(L, time, mid + 1, right)
+    merge(L, time, sound, mid + 1, right)
 
     # Visualize the list before merging the halves
-    visualisation(L, titre="Merge Sort", time=time)
+    visualisation(L, sound=sound, titre="Merge Sort", time=time)
 
     # Merge the sorted halves back together
-    fusion(L, left, right, mid, time)
+    mergeList(L, left, right, mid, time, sound)
 
     # Visualize the list after merging the halves
-    visualisation(L, titre="Merge Sort", time=time)
+    visualisation(L, sound=sound,  titre="Merge Sort", time=time)
 
-def fusion(L, left, right, mid, time):
+def mergeList(L, left, right, mid, time, sound):
     """
     Merges two sorted sublists (left and right halves) into a single sorted list.
 
@@ -71,7 +71,7 @@ def fusion(L, left, right, mid, time):
 
     # Merge elements from the left and right halves in sorted order
     while lCounter < len(leftCopy) and rCounter < len(rightCopy):
-        visualisation(L, titre="Merge Sort", time=time)  # Visualize the current state
+        visualisation(L, sound=sound, titre="Merge Sort", time=time)  # Visualize the current state
         if leftCopy[lCounter] <= rightCopy[rCounter]:
             L[sortedCounter] = leftCopy[lCounter]  # Place the smaller element from leftCopy
             lCounter += 1  # Move to the next element in leftCopy
@@ -82,14 +82,14 @@ def fusion(L, left, right, mid, time):
 
     # Append any remaining elements from leftCopy
     while lCounter < len(leftCopy):
-        visualisation(L, titre="Merge Sort", time=time)  # Visualize the current state
+        visualisation(L, sound=sound, titre="Merge Sort", time=time)  # Visualize the current state
         L[sortedCounter] = leftCopy[lCounter]
         lCounter += 1
         sortedCounter += 1
 
     # Append any remaining elements from rightCopy
     while rCounter < len(rightCopy):
-        visualisation(L, titre="Merge Sort", time=time)  # Visualize the current state
+        visualisation(L, sound=sound, titre="Merge Sort", time=time)  # Visualize the current state
         L[sortedCounter] = rightCopy[rCounter]
         rCounter += 1
         sortedCounter += 1

@@ -1,6 +1,6 @@
 from visualisationTri import visualisation
 
-def repartition(L, Lrempl, start, end, time):
+def repartition(L, Lrempl, start, end, time, sound):
     """
     Fills a portion of the list `L` with the elements from `Lrempl`,
     while visualizing each modification.
@@ -18,12 +18,12 @@ def repartition(L, Lrempl, start, end, time):
 
     y = 0  # Index for traversing `Lrempl`
     for i in range(start, end):
-        visualisation(L, titre="Quick Sort", time=time)  # Visualize the current state
+        visualisation(L, sound=sound, titre="Quick Sort", time=time)  # Visualize the current state
         L[i] = Lrempl[y]  # Insert the element from `Lrempl` into `L`
         y += 1  # Move to the next element in `Lrempl`
     return L
 
-def quick(L, time, a=None, b=None):
+def quick(L, time, sound, a=None, b=None):
     """
     Implements the Quick Sort algorithm with visualization at each step.
 
@@ -60,18 +60,18 @@ def quick(L, time, a=None, b=None):
             Llarge.append(L[i])
 
     # Reconstruct the list with smaller elements, the pivot, and larger elements
-    L = repartition(L, Lsmall, a, a + len(Lsmall), time)  # Place smaller elements
+    L = repartition(L, Lsmall, a, a + len(Lsmall), time, sound)  # Place smaller elements
 
     L[a + len(Lsmall)] = pivot  # Place the pivot at its correct position
 
-    L = repartition(L, Llarge, a + len(Lsmall) + 1, b, time)  # Place larger elements
+    L = repartition(L, Llarge, a + len(Lsmall) + 1, b, time, sound)  # Place larger elements
 
     posPivot = a + len(Lsmall)  # New position of the pivot
 
     # Recursive call to sort the left side (elements smaller than the pivot)
-    quick(L, time, a=a, b=posPivot)
+    quick(L, time, sound, a=a, b=posPivot)
 
     # Recursive call to sort the right side (elements larger than the pivot)
-    quick(L, time, a=posPivot + 1, b=b)
+    quick(L, time, sound, a=posPivot + 1, b=b)
 
-    visualisation(L, titre="Quick Sort", time=time)  # Visualize the current state
+    visualisation(L, sound=sound, titre="Quick Sort", time=time)  # Visualize the current state

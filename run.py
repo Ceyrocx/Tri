@@ -1,12 +1,13 @@
 import argparse
 from random import shuffle
+from xmlrpc.client import boolean
 
 from Sort.bogo import bogo
 from Sort.bubble import bubble
 from Sort.frequency import frequency
 from Sort.quick import quick
 from Sort.selection import selection
-from Sort.fusion import merge
+from Sort.merge import merge
 from Sort.insertion import insertion
 
 # Dictionary associating algorithm names with their respective functions
@@ -20,7 +21,7 @@ dictTri = {
     "insertion": insertion,
 }
 
-def run(amount, tri, time):
+def run(amount, tri, time, sound):
     """
     Generates a unique list of random integers and applies the specified sorting algorithm on it.
 
@@ -37,7 +38,7 @@ def run(amount, tri, time):
     shuffle(L)  # Randomly shuffles the elements of the list `L` to disorder them.
 
     # Call the appropriate sorting function from the dictionary using the specified algorithm
-    dictTri[tri.lower()](L, time)
+    dictTri[tri.lower()](L, time, sound)
 
 
 if __name__ == "__main__":
@@ -48,9 +49,10 @@ if __name__ == "__main__":
     parser.add_argument("-n", "--amount", type=int, default=5, help="Number of elements to sort")
     parser.add_argument("-t", "--tri", type=str, default="bogo", help="Sorting algorithm to use (bogo or bubble)")
     parser.add_argument("-s", "--speed", type=float, default=0.01, help="Speed of the sorting visualization")
+    parser.add_argument("-m", "--sound", type=bool, default=False, help="Active the song during visualization")
 
     # Parse the arguments
     args = parser.parse_args()
 
     # Call the function with the obtained parameters
-    run(amount=args.amount, tri=args.tri, time=args.speed)
+    run(amount=args.amount, tri=args.tri, time=args.speed, sound=args.sound)
