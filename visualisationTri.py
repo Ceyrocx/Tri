@@ -31,7 +31,7 @@ def visualisation(L, time, sound, titre=None, nbTest=None):
         visualisation.verif = True  # Used to verify if the list is fully sorted
 
         # Setup plot figure
-        plt.figure(figsize=(8, 6))
+        plt.figure(figsize=(12, 8))
         plt.title(titre, color="orange", loc="center", fontweight="bold")
 
         # Create initial bar chart and store bar objects for later updating
