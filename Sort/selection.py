@@ -10,19 +10,20 @@ def selection(L, time, sound):
 
     The selection sort algorithm repeatedly selects the smallest element from the unsorted portion
     of the list and swaps it with the first unsorted element. This process is repeated until the list is sorted.
+    After each swap, the current state of the list is visualized.
     """
 
     n = len(L)  # Get the length of the list L
 
     # Loop over each element in the list
     for i in range(n):
-        min = L[i]  # Set the current element as the minimum
+        min_value = L[i]  # Set the current element as the minimum
         indMin = i  # Index of the minimum element
 
         # Find the smallest element in the unsorted portion of the list
         for j in range(i + 1, n):
-            if L[j] < min:
-                min = L[j]
+            if L[j] < min_value:
+                min_value = L[j]
                 indMin = j
 
         # Swap the found minimum element with the current element
@@ -30,4 +31,3 @@ def selection(L, time, sound):
 
         # Visualize the current state of the list after each swap
         visualisation(L, sound=sound, titre="Selection Sort", time=time)
-

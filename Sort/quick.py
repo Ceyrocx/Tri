@@ -11,6 +11,7 @@ def repartition(L, Lrempl, start, end, time, sound):
         start (int): The start index in `L` for insertion.
         end (int): The end index in `L` for insertion.
         time (float): Delay between each visualization step.
+        sound (bool): Whether to play a sound during visualization.
 
     Returns:
         list: The updated list `L`.
@@ -18,30 +19,30 @@ def repartition(L, Lrempl, start, end, time, sound):
 
     y = 0  # Index for traversing `Lrempl`
     for i in range(start, end):
-        visualisation(L, sound=sound, titre="Quick Sort", time=time)  # Visualize the current state
         L[i] = Lrempl[y]  # Insert the element from `Lrempl` into `L`
+        visualisation(L, sound=sound, titre="Quick Sort", time=time)  # Visualize the current state
         y += 1  # Move to the next element in `Lrempl`
     return L
 
 def quick(L, time, sound, a=None, b=None):
     """
-    Implements the Quick Sort algorithm with visualization at each step.
+    Sorts a list using the Quick Sort algorithm and visualizes each step.
 
     Args:
         L (list): The list of elements to sort.
         time (float): Delay (in seconds) between each visualization step.
-        a (int, optional): The starting index of the sublist to sort. Defaults to None.
-        b (int, optional): The ending index of the sublist to sort. Defaults to None.
+        sound (bool): Whether to play a sound during visualization.
+        a (int, optional): The starting index of the sublist to sort. Defaults to 0.
+        b (int, optional): The ending index of the sublist to sort. Defaults to the length of the list.
 
     Returns:
         list: The sorted list `L`.
     """
-
     # Initialize parameters on the first call
-    if not hasattr(quick, "initialized"):
-        a = 0  # Starting index of the list
-        b = len(L)  # Ending index of the list
-        quick.initialized = True  # Mark initialization as complete
+    if a is None:
+        a = 0
+    if b is None:
+        b = len(L)
 
     # Base case: Stop recursion if the sublist has fewer than 2 elements
     if b - a < 2:
@@ -49,29 +50,28 @@ def quick(L, time, sound, a=None, b=None):
 
     # Choose the last element as the pivot
     pivot = L[b - 1]
-    Lsmall = []  # List for elements smaller than the pivot
-    Llarge = []  # List for elements larger than the pivot
 
-    # Partition elements around the pivot
-    for i in range(a, b - 1):  # Iterate over elements except the pivot
-        if L[i] < pivot:
-            Lsmall.append(L[i])
+    # Partition the list into elements smaller and larger than the pivot
+    left = a
+    right = b - 1
+
+    while left < right:
+        if L[left] < pivot:
+            left += 1  # Left element is in the correct position
         else:
-            Llarge.append(L[i])
+            right -= 1  # Reduce the right boundary
+            L[left], L[right] = L[right], L[left]  # Swap to move the larger element to the right
 
-    # Reconstruct the list with smaller elements, the pivot, and larger elements
-    L = repartition(L, Lsmall, a, a + len(Lsmall), time, sound)  # Place smaller elements
+    # Place the pivot in its correct position
+    L[left], L[b - 1] = L[b - 1], L[left]
 
-    L[a + len(Lsmall)] = pivot  # Place the pivot at its correct position
+    # Visualize the list after placing the pivot
+    visualisation(L, sound=sound, titre="Quick Sort", time=time)
 
-    L = repartition(L, Llarge, a + len(Lsmall) + 1, b, time, sound)  # Place larger elements
+    # Recursive call to sort the left part of the list (elements smaller than the pivot)
+    quick(L, time, sound, a, left)
 
-    posPivot = a + len(Lsmall)  # New position of the pivot
+    # Recursive call to sort the right part of the list (elements larger than the pivot)
+    quick(L, time, sound, left + 1, b)
 
-    # Recursive call to sort the left side (elements smaller than the pivot)
-    quick(L, time, sound, a=a, b=posPivot)
-
-    # Recursive call to sort the right side (elements larger than the pivot)
-    quick(L, time, sound, a=posPivot + 1, b=b)
-
-    visualisation(L, sound=sound, titre="Quick Sort", time=time)  # Visualize the current state
+    return L
