@@ -1,6 +1,5 @@
 import argparse
 from random import shuffle
-from xmlrpc.client import boolean
 
 from Sort.bogo import bogo
 from Sort.bubble import bubble
@@ -41,6 +40,7 @@ def run(amount, tri, time, sound):
     - The list will be sorted according to the chosen algorithm, and the process is visualized.
     """
     # Create a list of unique integers from 1 to `amount`
+
     L = [i for i in range(1, amount + 1)]
     shuffle(L)  # Randomly shuffle the list `L` to disorder it
 
