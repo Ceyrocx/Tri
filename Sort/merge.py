@@ -15,10 +15,12 @@ def merge(L, time, sound, left=None, right=None):
     in sorted order using the `mergeList` function. The sorting process is visualized at key steps.
     """
 
+
     # Initialize the left and right indices on the first call
     if left is None and right is None:
         left = 0  # Start from the beginning of the list
         right = len(L) - 1  # End at the last element
+        visualisation(L, sound=sound, titre="Merge Sort", time=time)
 
     # Base case: if the sublist has one or zero elements, it's already sorted
     if left >= right:
