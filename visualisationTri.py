@@ -11,8 +11,6 @@ def visualisation(L, titre=None, nbTest=None):
 
     Parameters:
         L (list): The list of numerical elements to visualize.
-        time (float): Delay (in seconds) between updates.
-        sound (bool): Whether or not to play a sound when a bar changes height.
         titre (str, optional): Title for the visualization. Default is None.
         nbTest (int, optional): The test iteration number, displayed on the plot. Default is None.
 
