@@ -66,7 +66,7 @@ def visualisation(L, titre=None, nbTest=None):
 
     # Store current state of the list to detect future changes
     visualisation.ancienL = L[:]
-    print(visualisation.sound, visualisation.time)
+
     # Pause to render the updated plot with the given time delay
     plt.pause(visualisation.time)
 
