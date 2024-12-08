@@ -1,13 +1,11 @@
 from visualisationTri import visualisation
 
-def bubble(L, time, sound):
+def bubble(L):
     """
     Sorts a list using the bubble sort algorithm and visualizes each step of the sorting process.
 
     Parameters:
     L (list): The list of elements to be sorted.
-    time (float): The time delay between visualizations, in seconds.
-    sound (bool): Whether to play a sound during visualization.
 
     Returns:
     None: The function visualizes the sorting process without returning a value.
@@ -27,6 +25,6 @@ def bubble(L, time, sound):
                 sorted_flag = False  # If a swap occurs, the list is not yet sorted
 
                 # Visualize the list after each swap
-                visualisation(L, sound=sound, titre="Bubble Sort", time=time)
+                visualisation(L, titre="Bubble Sort")
         # Decrease n to avoid re-checking the last sorted element
         n -= 1

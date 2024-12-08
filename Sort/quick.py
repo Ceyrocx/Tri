@@ -1,13 +1,11 @@
 from visualisationTri import visualisation
 
-def quick(L, time, sound, a=None, b=None):
+def quick(L, a=None, b=None):
     """
     Sorts the list `L` using the Quick Sort algorithm with visualizations.
 
     Args:
         L (list): The list of elements to sort.
-        time (float): Delay (in seconds) between each visualization step.
-        sound (bool): Whether to play a sound during visualization.
         a (int, optional): The starting index of the sublist to sort. Defaults to 0.
         b (int, optional): The ending index of the sublist to sort. Defaults to the length of `L`.
 
@@ -19,7 +17,7 @@ def quick(L, time, sound, a=None, b=None):
     if a is None and b is None:
         a = 0  # Start of the list
         b = len(L)  # End of the list
-        visualisation(L, sound=sound, titre="Quick Sort", time=time)
+        visualisation(L, titre="Quick Sort")
 
     # Base case: Stop recursion if the sublist has fewer than 2 elements
     if b - a < 2:
@@ -40,17 +38,17 @@ def quick(L, time, sound, a=None, b=None):
         # Swap elements if necessary
         if left < right:
             L[left], L[right] = L[right], L[left]
-            visualisation(L, sound=sound, titre="Quick Sort", time=time)  # Visualize after swap
+            visualisation(L, titre="Quick Sort")  # Visualize after swap
 
     # Place the pivot in its correct position
     if L[left] > pivot:
         L[left], L[b - 1] = L[b - 1], L[left]
-        visualisation(L, sound=sound, titre="Quick Sort", time=time)  # Visualize after pivot placement
+        visualisation(L, titre="Quick Sort")  # Visualize after pivot placement
 
     # Recursively sort the left partition (elements smaller than the pivot)
-    quick(L, time, sound, a, left)
+    quick(L, a, left)
 
     # Recursively sort the right partition (elements larger than the pivot)
-    quick(L, time, sound, left + 1, b)
+    quick(L, left + 1, b)
 
     return L

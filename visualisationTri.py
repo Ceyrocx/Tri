@@ -3,7 +3,7 @@ import numpy as np
 import winsound
 from math import log
 
-def visualisation(L, time, sound, titre=None, nbTest=None):
+def visualisation(L, titre=None, nbTest=None):
     """
     Visualizes the state of a list `L` as a dynamic bar chart, updating the heights and colors
     of the bars based on the current values in the list. A beep sound can be played when a bar
@@ -25,10 +25,13 @@ def visualisation(L, time, sound, titre=None, nbTest=None):
 
     # Initialize the plot on the first call
     if not hasattr(visualisation, "initialized"):
+        from globals import globalTime, globalSound
         visualisation.LTrier = sorted(L)  # Store the sorted version of the list for comparison
         visualisation.bars = []  # Initialize bar container
         visualisation.ancienL = L[:]  # Store the previous state of the list
         visualisation.verif = True  # Used to verify if the list is fully sorted
+        visualisation.time = globalTime
+        visualisation.sound = globalSound
 
         # Setup plot figure
         plt.figure(figsize=(12, 8))
@@ -50,7 +53,7 @@ def visualisation(L, time, sound, titre=None, nbTest=None):
     # Update bar heights and colors
     for i, (bar, height) in enumerate(zip(visualisation.bars, L)):
         if height != visualisation.ancienL[i]:  # Check if the height has changed
-            if sound:
+            if visualisation.sound:
                 # Calculate frequency for the beep sound to be in a more audible range
                 # This formula ensures that the frequency remains within a range that is clear and distinct
                 # We limit the frequency to be between 1000 Hz and 4000 Hz.
@@ -63,9 +66,9 @@ def visualisation(L, time, sound, titre=None, nbTest=None):
 
     # Store current state of the list to detect future changes
     visualisation.ancienL = L[:]
-
+    print(visualisation.sound, visualisation.time)
     # Pause to render the updated plot with the given time delay
-    plt.pause(time)
+    plt.pause(visualisation.time)
 
     # Check if the list is sorted and update visualization accordingly
     if L == visualisation.LTrier and visualisation.verif:
@@ -75,19 +78,19 @@ def visualisation(L, time, sound, titre=None, nbTest=None):
         # Final color transition of bars to green one by one
         while i < len(L):
             visualisation.bars[i].set_color("green")  # Set color to green for the final sorted state
-            if sound:
+            if visualisation.sound:
                 # Play sound for each bar transitioning to green
                 frequency = max(1000, min(4000, 1500 * log(L[i] + 1) + 1500))  # Ensure frequency remains audible
                 winsound.Beep(int(frequency), 50)
             i += 1
-            plt.pause(time)
+            plt.pause(visualisation.time)
 
         # Final step: Change all bars to red and play the final sound
         for bar in visualisation.bars:
             bar.set_color("red")  # Final color change to red, indicating sorting completion
         plt.pause(1)  # Short pause before playing final sound
 
-        if sound:
+        if visualisation.sound:
             # Play a final celebratory sound (e.g., Rick Roll sound)
             winsound.PlaySound('Sound/Rick_Roll.wav', winsound.SND_FILENAME)
 

@@ -1,13 +1,11 @@
 from visualisationTri import visualisation
 
-def frequency(L, time, sound):
+def frequency(L):
     """
     Sorts a list using the Frequency Sort algorithm and visualizes each step of the sorting process.
 
     Parameters:
     L (list): The list of positive integers to be sorted.
-    time (float): The delay (in seconds) between each visualization step.
-    sound (bool): Whether to play a sound during visualization.
 
     Returns:
     None: The list `L` is sorted in place, and the sorting process is visualized.
@@ -21,7 +19,7 @@ def frequency(L, time, sound):
         LTrier[value - 1] += 1  # Increment the position corresponding to the value
 
     # Visualize the initial state of the list
-    visualisation(L, sound=sound, titre="Frequency Sort", time=time)
+    visualisation(L, titre="Frequency Sort")
 
     # Reconstruct the list `L` based on the counted frequencies
     index = 0  # Index to track the position in the original list
@@ -31,4 +29,4 @@ def frequency(L, time, sound):
             L[index] = i + 1  # Set the value in the original list
             index += 1  # Move to the next position
             # Visualize the current state of the list after each insertion
-            visualisation(L, sound=sound, titre="Frequency Sort", time=time)
+            visualisation(L, titre="Frequency Sort")

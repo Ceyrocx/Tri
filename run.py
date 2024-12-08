@@ -1,6 +1,8 @@
 import argparse
 from random import shuffle
 
+import globals
+
 from Sort.bogo import bogo
 from Sort.bubble import bubble
 from Sort.frequency import frequency
@@ -39,8 +41,11 @@ def run(amount, tri, time, sound):
     - The sorting function is chosen based on the value of `tri`.
     - The list will be sorted according to the chosen algorithm, and the process is visualized.
     """
-    # Create a list of unique integers from 1 to `amount`
 
+    globals.globalTime = time
+    globals.globalSound = sound
+
+    # Create a list of unique integers from 1 to `amount`
     L = [i for i in range(1, amount + 1)]
     shuffle(L)  # Randomly shuffle the list `L` to disorder it
 
@@ -50,7 +55,7 @@ def run(amount, tri, time, sound):
         return
 
     # Call the appropriate sorting function based on the selected algorithm
-    dictTri[tri.lower()](L, time, sound)
+    dictTri[tri.lower()](L)
 
 
 if __name__ == "__main__":

@@ -1,13 +1,11 @@
 from visualisationTri import visualisation
 
-def merge(L, time, sound, left=None, right=None):
+def merge(L, left=None, right=None):
     """
     Sorts a list using the Merge Sort algorithm and visualizes the process.
 
     Parameters:
     L (list): The list to be sorted.
-    time (float): The time delay between visualizations, in seconds.
-    sound (bool): Whether to play a sound during visualization.
     left (int, optional): The starting index of the current sublist. Defaults to None.
     right (int, optional): The ending index of the current sublist. Defaults to None.
 
@@ -20,7 +18,7 @@ def merge(L, time, sound, left=None, right=None):
     if left is None and right is None:
         left = 0  # Start from the beginning of the list
         right = len(L) - 1  # End at the last element
-        visualisation(L, sound=sound, titre="Merge Sort", time=time)
+        visualisation(L, titre="Merge Sort")
 
     # Base case: if the sublist has one or zero elements, it's already sorted
     if left >= right:
@@ -30,19 +28,19 @@ def merge(L, time, sound, left=None, right=None):
     mid = (left + right) // 2
 
     # Recursively sort the left half of the list
-    merge(L, time, sound, left, mid)
+    merge(L, left, mid)
 
     # Recursively sort the right half of the list
-    merge(L, time, sound, mid + 1, right)
+    merge(L, mid + 1, right)
 
     # Merge the sorted halves back together
-    mergeList(L, left, right, mid, time, sound)
+    mergeList(L, left, right, mid)
 
     # Visualize the list after merging
-    visualisation(L, sound=sound, titre="Merge Sort", time=time)
+    visualisation(L, titre="Merge Sort")
 
 
-def mergeList(L, left, right, mid, time, sound):
+def mergeList(L, left, right, mid):
     """
     Merges two sorted sublists (left and right halves) into a single sorted list.
 
@@ -51,8 +49,6 @@ def mergeList(L, left, right, mid, time, sound):
     left (int): The starting index of the left half.
     right (int): The ending index of the right half.
     mid (int): The midpoint dividing the left and right halves.
-    time (float): The time delay between visualizations, in seconds.
-    sound (bool): Whether to play a sound during visualization.
 
     This function compares elements from both the left and right halves of the list,
     placing the smaller elements into the main list `L` in sorted order.
@@ -76,18 +72,18 @@ def mergeList(L, left, right, mid, time, sound):
             L[sortedCounter] = rightCopy[rCounter]  # Insert from right half
             rCounter += 1
         sortedCounter += 1
-        visualisation(L, sound=sound, titre="Merge Sort", time=time)  # Visualize after each insertion
+        visualisation(L, titre="Merge Sort")  # Visualize after each insertion
 
     # Append any remaining elements from leftCopy
     while lCounter < len(leftCopy):
         L[sortedCounter] = leftCopy[lCounter]
         lCounter += 1
         sortedCounter += 1
-        visualisation(L, sound=sound, titre="Merge Sort", time=time)
+        visualisation(L, titre="Merge Sort")
 
     # Append any remaining elements from rightCopy
     while rCounter < len(rightCopy):
         L[sortedCounter] = rightCopy[rCounter]
         rCounter += 1
         sortedCounter += 1
-        visualisation(L, sound=sound, titre="Merge Sort", time=time)
+        visualisation(L, titre="Merge Sort")

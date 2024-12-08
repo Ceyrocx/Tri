@@ -1,0 +1,2 @@
+globalTime = float()
+globalSound = bool()

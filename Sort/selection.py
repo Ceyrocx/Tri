@@ -1,12 +1,11 @@
 from visualisationTri import visualisation
 
-def selection(L, time, sound):
+def selection(L):
     """
     Sorts a list using the selection sort algorithm and visualizes each step of the sorting process.
 
     Parameters:
     L (list): The list of elements to be sorted.
-    time (float): The time delay between visualizations, in seconds.
 
     The selection sort algorithm repeatedly selects the smallest element from the unsorted portion
     of the list and swaps it with the first unsorted element. This process is repeated until the list is sorted.
@@ -30,4 +29,4 @@ def selection(L, time, sound):
         L[i], L[indMin] = L[indMin], L[i]
 
         # Visualize the current state of the list after each swap
-        visualisation(L, sound=sound, titre="Selection Sort", time=time)
+        visualisation(L, titre="Selection Sort")
