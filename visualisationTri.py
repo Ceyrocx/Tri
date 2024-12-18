@@ -58,9 +58,9 @@ def visualisation(L, titre=None, nbTest=None):
                 frequency = max(1000, min(4000, 1500 * log(height + 1) + 1500))  # Avoid extremely low frequencies
                 winsound.Beep(int(frequency), 50)  # Play sound if height changes
             bar.set_color("green")  # Highlight changed bars in green
+            bar.set_height(height)  # Update the height of the bar
         else:
             bar.set_color("orange")  # Reset color to orange for all bars
-        bar.set_height(height)  # Update the height of the bar
 
     # Store current state of the list to detect future changes
     visualisation.ancienL = L[:]
@@ -72,15 +72,13 @@ def visualisation(L, titre=None, nbTest=None):
     if L == visualisation.LTrier and visualisation.verif:
         visualisation.verif = False  # Avoid repeating the final sorted checks
 
-        i = 0
         # Final color transition of bars to green one by one
-        while i < len(L):
+        for i in range(len(L)):
             visualisation.bars[i].set_color("green")  # Set color to green for the final sorted state
             if visualisation.sound:
                 # Play sound for each bar transitioning to green
                 frequency = max(1000, min(4000, 1500 * log(L[i] + 1) + 1500))  # Ensure frequency remains audible
                 winsound.Beep(int(frequency), 50)
-            i += 1
             plt.pause(visualisation.time)
 
         # Final step: Change all bars to red and play the final sound
